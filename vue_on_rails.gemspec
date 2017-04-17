@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Easy and simple way to use Vue.js with Ruby on Rails and Turbolinks 5.}
   spec.description   = %q{Ideal to sprinkle your app with Vue components}
-  spec.homepage      = "https://github.com/benoitongit"
+  spec.homepage      = "https://github.com/benoitongit/vue-on-rails"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
