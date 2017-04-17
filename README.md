@@ -24,7 +24,14 @@ Or install it yourself as:
 
     $ gem install vue_on_rails
 
+Note that this gem requires vue.js, it must be included in your app.
+
 ## Usage
+
+Require vue_on_rails in application.js
+```
+//= require vue_on_rails
+```
 
 Init and destroy Vue components:
 ```
