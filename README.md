@@ -1,8 +1,12 @@
-# Vue::On::Rails
+# VueOnRails
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/vue/on/rails`. To experiment with that code, run `bin/console` for an interactive prompt.
+Easy and simple way to use Vue.js with Ruby on Rails and Turbolinks 5.
 
-TODO: Delete this and the text above, and describe your gem
+This gem was made to sprinkle your Rails app with Vue components. 
+It's compatible with Turbolinks caching system.
+
+If you are building a SPA app with Vue and Rails, please look into:
+https://github.com/adambutler/vuejs-rails
 
 ## Installation
 
@@ -18,21 +22,44 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install vue-on-rails
+    $ gem install vue_on_rails
 
 ## Usage
 
-TODO: Write usage instructions here
+Init and destroy Vue components:
+```
+# Load Vue components
+document.addEventListener 'turbolinks:load', ->
+  VueOnRails.init()
 
-## Development
+# Destroy Vue components
+document.addEventListener 'turbolinks:before-render', ->
+  VueOnRails.destroy()
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Add component in view.html.erb 
+```
+<%= vue_component 'MyComponent', my_prop: 'awesome prop!' %>
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Your Vue component in my_component.coffee
+```
+@MyComponent =
+  props: ['myProp']
+  template: '<div>A custom component with {{myProp}}</div>'
+```
+
+Will output:
+```
+<div data-vue-component="MyComponent" data-vue-props="{&quot;my-prop&quot;:&quot;awesome prop!&quot;}">
+   <div>A custom component with awesome prop!</div>
+</div>
+```
+
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/vue-on-rails.
+Bug reports and pull requests are welcome on GitHub at https://github.com/benoitontgit/vue-on-rails.
 
 
 ## License
