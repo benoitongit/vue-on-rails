@@ -39,7 +39,7 @@ Require vue_on_rails in application.js
 
 Init and destroy Vue components:
 ```
-# Load Vue components
+# Mount Vue components
 document.addEventListener 'turbolinks:load', ->
   VueOnRails.init()
 
@@ -48,7 +48,7 @@ document.addEventListener 'turbolinks:before-render', ->
   VueOnRails.destroy()
 ```
 
-Your Vue component in my_component.coffee
+Example Vue component in my_component.coffee
 ```
 @MyComponent =
   props: ['myProp']
