@@ -8,7 +8,7 @@ It's compatible with Turbolinks caching system.
 If you are building a pure SPA app with Vue and Rails without Turbolinks, please look into:
 https://github.com/adambutler/vuejs-rails
 
-##Requirements
+## Requirements
 
 - [Vue.js](https://vuejs.org/v2/guide/installation.html) >= 2.0
 - [Turbolinks](https://github.com/turbolinks/turbolinks) >= 5.0
@@ -64,7 +64,7 @@ Add component in view.html.erb
 </div>
 ```
 
-##View Helper
+## View Helper
 A view helper generate a div with component and props:
 ```
 def vue_component(component_name, props = {}, html_options = {})
@@ -78,13 +78,13 @@ Example with html tag:
 </div>
 ```
 
-##Props
+## Props
 
-###Kebab-case (hyphen-delimited)
+### Kebab-case (hyphen-delimited)
 
 Props are automatically hyphen-delimited to follow vuejs and HTML5 standard.
 
-###Dynamic props
+### Dynamic props
 ```
 <%= vue_component 'MessageComponent', ':my_message': 'hello world' %>
 ```
