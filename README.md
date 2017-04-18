@@ -5,8 +5,13 @@ Easy and simple way to use Vue.js with Ruby on Rails and Turbolinks 5.
 This gem was made to sprinkle your Rails app with Vue components. 
 It's compatible with Turbolinks caching system.
 
-If you are building a SPA app with Vue and Rails, please look into:
+If you are building a pure SPA app with Vue and Rails without Turbolinks, please look into:
 https://github.com/adambutler/vuejs-rails
+
+##Requirements
+
+- [Vue.js](https://vuejs.org/v2/guide/installation.html) >= 2.0
+- [Turbolinks](https://github.com/turbolinks/turbolinks) >= 5.0
 
 ## Installation
 
@@ -24,7 +29,6 @@ Or install it yourself as:
 
     $ gem install vue_on_rails
 
-Note that this gem requires vue.js, it must be included in your app.
 
 ## Usage
 
@@ -44,11 +48,6 @@ document.addEventListener 'turbolinks:before-render', ->
   VueOnRails.destroy()
 ```
 
-Add component in view.html.erb 
-```
-<%= vue_component 'MyComponent', my_prop: 'awesome prop!' %>
-```
-
 Your Vue component in my_component.coffee
 ```
 @MyComponent =
@@ -56,13 +55,39 @@ Your Vue component in my_component.coffee
   template: '<div>A custom component with {{myProp}}</div>'
 ```
 
-Will output:
+Add component in view.html.erb
 ```
+<%= vue_component 'MyComponent', my_prop: 'awesome prop!' %>
+<!-- This will output -->
 <div data-vue-component="MyComponent" data-vue-props="{&quot;my-prop&quot;:&quot;awesome prop!&quot;}">
    <div>A custom component with awesome prop!</div>
 </div>
 ```
 
+##View Helper
+A view helper generate a div with component and props:
+```
+def vue_component(component_name, props = {}, html_options = {})
+```
+Example with html tag:
+```
+<%= vue_component 'UserComponent', { user_id: 1 }, { class: 'd-inline-block align-middle' } %>
+<!-- Becomes: -->
+<div data-vue-component="UserComponent" data-vue-props="{'user-id': 1}" class="d-inline-block align-middle">
+...
+</div>
+```
+
+##Props
+
+###Kebab-case (hyphen-delimited)
+
+Props are automatically hyphen-delimited to follow vuejs and HTML5 standard.
+
+###Dynamic props
+```
+<%= vue_component 'MessageComponent', ':my_message': 'hello world' %>
+```
 
 ## Contributing
 
