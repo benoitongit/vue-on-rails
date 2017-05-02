@@ -41,11 +41,11 @@ Init and destroy Vue components:
 ```
 # Mount Vue components
 document.addEventListener 'turbolinks:load', ->
-  VueOnRails.init()
+  VueOnRails.mountComponents()
 
 # Destroy Vue components
 document.addEventListener 'turbolinks:before-render', ->
-  VueOnRails.destroy()
+  VueOnRails.destroyComponents()
 ```
 
 Example Vue component in my_component.coffee
