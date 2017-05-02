@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Benoit Zeler"]
   spec.email         = "benoit@kimkim.com"
 
-  spec.summary       = %q{Easy and simple way to use Vue.js with Ruby on Rails and Turbolinks 5.}
+  spec.summary       = %q{Easy and simple way to mount/destroy Vue.js components with Ruby on Rails and Turbolinks 5.}
   spec.description   = %q{Ideal to sprinkle your app with Vue components}
   spec.homepage      = "https://github.com/benoitongit/vue-on-rails"
   spec.license       = "MIT"
@@ -27,9 +27,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "coffee-rails", ">= 4.0", "< 5.0"
-
-  spec.add_development_dependency "bundler", "~> 1.13"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rails", ">= 4.0", "<= 5.2"
+  spec.add_development_dependency "bundler", "< 2.0"
+  spec.add_development_dependency "rake", "<= 13.0"
+  spec.add_development_dependency "rails", ">= 4.0", "< 6"
 end

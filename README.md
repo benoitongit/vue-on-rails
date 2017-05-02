@@ -2,7 +2,7 @@
 
 Easy and simple way to use Vue.js with Ruby on Rails and Turbolinks 5.
 
-This gem was made to sprinkle your Rails app with Vue components. 
+This gem is intended to sprinkle your Rails app with Vue components. 
 It's compatible with Turbolinks caching system.
 
 If you are building a pure SPA app with Vue and Rails without Turbolinks, please look into:
