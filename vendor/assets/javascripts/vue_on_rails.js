@@ -22,28 +22,23 @@ this.VueOnRails = (function() {
     name = component.getAttribute('data-vue-component');
     props = JSON.parse(component.getAttribute('data-vue-props'));
     if ((namespace && typeof window[namespace][name] === 'object') || window[name] === 'object') {
-      el = document.createElement('element-to-be-mounted');
-      component.innerHTML = '';
-      component.appendChild(el);
-      vm = newVueInstance(name, props, el);
+      vm = newVueInstance(name, props, component);
       return vueModels.push(vm);
     }
   };
 
-  newVueInstance = function(name, props, el) {
-    var component, element, nameFormatted, obj;
-    nameFormatted = camelCaseToHyphen(name);
-    element = document.createElement(nameFormatted);
+  newVueInstance = function(name, props, component) {
+    var nameFormatted = camelCaseToHyphen(name);
+    var element = document.createElement(nameFormatted);
+    var componentName = namespace ? window[namespace][name] : window[name];
     setElementProps(element, props);
-    component = namespace ? window[namespace][name] : window[name];
+    component.innerHTML = '';
+    component.appendChild(element);
+    componentObj = {};
+    componentObj[nameFormatted] = componentName;
     return new Vue({
-      el: el,
-      template: element.outerHTML,
-      components: (
-        obj = {},
-          obj["" + nameFormatted] = component,
-          obj
-      )
+      el: component,
+      components: componentObj
     });
   };
 
