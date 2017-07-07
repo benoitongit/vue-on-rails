@@ -2,7 +2,7 @@
 
 Easy and simple way to use Vue.js with Ruby on Rails and Turbolinks 5.
 
-This gem is intended to sprinkle your Rails app with Vue components. Really lightweight script (1.3KB minified) that mount and destroy Vue components on demand. It's works nicely with Turbolinks rendering and caching system.
+This gem is intended to sprinkle your Rails app with Vue components. Lightweight script (1KB minified) that mount and destroy Vue components on demand. It's works nicely with Turbolinks rendering and caching system.
 
 If you are building a pure SPA app with Vue and Rails without Turbolinks, you will be better off looking into:
 https://github.com/adambutler/vuejs-rails
@@ -39,19 +39,22 @@ Require vue_on_rails in application.js
 Mount and destroy Vue components:
 ```
 # Mount Vue components
-document.addEventListener 'turbolinks:load', ->
-  VueOnRails.mountComponents()
+document.addEventListener('turbolinks:load', function() {
+  VueOnRails.mountComponents();
+});
 
 # Destroy Vue components
-document.addEventListener 'turbolinks:before-render', ->
-  VueOnRails.destroyComponents()
+document.addEventListener('turbolinks:before-render', function() {
+  VueOnRails.destroyComponents();
+});
 ```
 
-Example Vue component in my_component.coffee
+Example Vue component in my_component.js
 ```
-@MyComponent =
-  props: ['myProp']
+MyComponent = {
+  props: ['myProp'],
   template: '<div>A custom component with {{myProp}}</div>'
+};
 ```
 
 Add component in view.html.erb
