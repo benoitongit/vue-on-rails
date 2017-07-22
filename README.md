@@ -1,8 +1,8 @@
 # VueOnRails
 
-Easy and simple way to use Vue.js with Ruby on Rails and Turbolinks 5.
+Simple and fast way to use Vue.js with Ruby on Rails and Turbolinks 5.
 
-This gem is intended to sprinkle your Rails app with Vue components. Lightweight script (1KB minified) that mount and destroy Vue components on demand. It's works nicely with Turbolinks rendering and caching system.
+This gem is fantastic to sprinkle your web page with Vue components. Lightweight script (1KB minified) that mounts and destroys Vue components on demand. It works nicely with Turbolinks rendering and caching system.
 
 If you are building a pure SPA app with Vue and Rails without Turbolinks, you will be better off looking into:
 https://github.com/adambutler/vuejs-rails
