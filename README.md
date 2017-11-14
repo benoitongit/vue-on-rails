@@ -8,6 +8,8 @@ It works nicely with:
 - Turbolinks rendering and caching system
 - Javascript loaded asynchronously with defer or async script attribute
 
+It's fully Google PageSpeed friendly since you can use it with defer or async, no need for render-blocking JavaScript :)
+
 If you are building a pure SPA app with Vue and Rails without Turbolinks, you will be better off looking into:
 https://github.com/adambutler/vuejs-rails
 
@@ -93,7 +95,7 @@ Props are automatically hyphen-delimited to follow vuejs and HTML5 standard.
 
 ### Dynamic props
 ```
-<%= vue_component 'MessageComponent', ':my_message': 'hello world' %>
+<%= vue_component 'MessageComponent', ':my_object': { title: 'Test', subtitle: 'Sweet!' } %>
 ```
 
 ## Contributing
