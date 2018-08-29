@@ -1,9 +1,8 @@
 this.VueOnRails = (function() {
-  var camelCaseToHyphen, destroyComponents, mountComponent, mountComponents, newVueInstance, setElementProps;
   var vueModels = [];
   var namespace = null;
 
-  mountComponents = function() {
+  var mountComponents = function() {
     vueModels = [];
     namespace = VueOnRails.namespace;
     var vueComponents = document.querySelectorAll('[data-vue-component]');
@@ -17,7 +16,7 @@ this.VueOnRails = (function() {
     return results;
   };
 
-  mountComponent = function(component) {
+  var mountComponent = function(component) {
     var name = component.getAttribute('data-vue-component');
     var props = JSON.parse(component.getAttribute('data-vue-props'));
     if ((namespace && typeof window[namespace][name] === 'object') || window[name] === 'object') {
@@ -26,7 +25,7 @@ this.VueOnRails = (function() {
     }
   };
 
-  newVueInstance = function(name, props, component) {
+  var newVueInstance = function(name, props, component) {
     var componentObj = {};
     var nameFormatted = camelCaseToHyphen(name);
     var element = document.createElement(nameFormatted);
@@ -41,9 +40,9 @@ this.VueOnRails = (function() {
     });
   };
 
-  setElementProps = function(element, props) {
-    var key, results, value;
-    results = [];
+  var setElementProps = function(element, props) {
+    var key, value;
+    var results = [];
     for (key in props) {
       value = props[key];
       if (typeof value === 'object') {
@@ -55,20 +54,20 @@ this.VueOnRails = (function() {
     return results;
   };
 
-  camelCaseToHyphen = function(string) {
+  var camelCaseToHyphen = function(string) {
     return string.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   };
 
-  destroyComponents = function() {
-    var j, len, vm;
-    for (j = 0, len = vueModels.length; j < len; j++) {
-      vm = vueModels[j];
-      vm.$destroy();
+  var destroyComponents = function() {
+    var i;
+    for (i = 0; i < vueModels.length; i++) {
+      vueModels[i].$destroy();
     }
-    return vueModels = [];
+    vueModels = [];
   };
 
   return {
+    mountComponent: mountComponent,
     mountComponents: mountComponents,
     destroyComponents: destroyComponents
   };
