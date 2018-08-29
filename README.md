@@ -1,8 +1,14 @@
 # VueOnRails
 
-Easy and simple way to use Vue.js with Ruby on Rails and Turbolinks 5.
+Simple and fast way to use Vue.js with Ruby on Rails and Turbolinks 5.
 
-This gem is intended to sprinkle your Rails app with Vue components. Really lightweight script (1.3KB minified) that mount and destroy Vue components on demand. It's works nicely with Turbolinks rendering and caching system.
+This gem is fantastic to sprinkle your web page with Vue components. Lightweight script (1KB minified) that mounts and destroys Vue components on demand.
+
+It works nicely with:
+- Turbolinks rendering and caching system
+- Javascript loaded asynchronously with defer or async script attribute
+
+It's fully Google PageSpeed friendly since you can use it with defer or async, no need for render-blocking JavaScript :)
 
 If you are building a pure SPA app with Vue and Rails without Turbolinks, you will be better off looking into:
 https://github.com/adambutler/vuejs-rails
@@ -39,19 +45,23 @@ Require vue_on_rails in application.js
 Mount and destroy Vue components:
 ```
 # Mount Vue components
-document.addEventListener 'turbolinks:load', ->
-  VueOnRails.mountComponents()
+document.addEventListener('turbolinks:load', function() {
+  VueOnRails.mountComponents();
+});
 
 # Destroy Vue components
-document.addEventListener 'turbolinks:before-render', ->
-  VueOnRails.destroyComponents()
+document.addEventListener('turbolinks:before-render', function() {
+  VueOnRails.destroyComponents();
+});
 ```
+VueOnRails.mountComponents() will scan the page and mount components using data-vue-component and data-vue-props.
 
-Example Vue component in my_component.coffee
+Example Vue component in my_component.js
 ```
-@MyComponent =
-  props: ['myProp']
+MyComponent = {
+  props: ['myProp'],
   template: '<div>A custom component with {{myProp}}</div>'
+};
 ```
 
 Add component in view.html.erb
@@ -85,7 +95,7 @@ Props are automatically hyphen-delimited to follow vuejs and HTML5 standard.
 
 ### Dynamic props
 ```
-<%= vue_component 'MessageComponent', ':my_message': 'hello world' %>
+<%= vue_component 'MessageComponent', ':my_object': { title: 'Test', subtitle: 'Sweet!' } %>
 ```
 
 ## Contributing
